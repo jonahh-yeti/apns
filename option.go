@@ -110,6 +110,12 @@ func WithBundleID(bundleID string) ClientOption {
 // expiration time, priority, etc.
 type SendOption func(h http.Header)
 
+func WithPushType(pushType string) SendOption {
+	return func(h http.Header) {
+		h.Set("apns-push-type", pushType)
+	}
+}
+
 // WithNotificationID sets a  canonical UUID that identifies the notification.
 // If there is an error sending the notification, APNs uses this value
 // to identify the notification to your server. The canonical form is
